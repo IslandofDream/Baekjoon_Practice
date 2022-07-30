@@ -9,8 +9,7 @@ import java.util.*
             return 0
         else if (num == 1)
             return 1
-        if (num >= 2) {
+        else{
             return pivo(num - 1) + pivo(num - 2)
         }
-        return -1
     }
