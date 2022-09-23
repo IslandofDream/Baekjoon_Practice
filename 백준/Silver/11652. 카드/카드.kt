@@ -9,10 +9,7 @@ fun main() = with(BufferedReader(InputStreamReader(System.`in`))) {
         if(cards[key] == null) cards[key] = 1
         else cards[key] = cards[key]!!+1
     }
-    var max = 0
-    cards.values.forEach{
-        if(max<it) max = it
-    }
+    val max = cards.maxOf { it.value }
     val keys = cards.filterValues { it == max }.keys
     print(keys.minOrNull())
 }
