@@ -1,26 +1,25 @@
-import java.util.*
+import java.io.BufferedReader
+import java.io.InputStreamReader
 
-fun main() = with(Scanner(System.`in`)) {
-    val dwarfs = mutableListOf<Int>()
-    val total : Int
-    for(i in 0..8){
-        dwarfs.add(i, nextInt())
+fun main() = with(BufferedReader(InputStreamReader(System.`in`))) {
+    val dwarf = mutableListOf<Int>()
+    var one = 0
+    var two = 1
+    repeat(9) {
+        dwarf.add(readLine().toInt())
     }
-    total = dwarfs.sum()
-    loop@ for(i in 0..8){
-        for(j in 0..8){
-            if(total - dwarfs[i] - dwarfs[j] == 100 && i != j){
-                with(dwarfs) {
-                    val temp1 = dwarfs[i]
-                    val temp2 = dwarfs[j]
-                    remove(temp1)
-                    remove(temp2)
-                }
-                break@loop
-            }
+    while (true) {
+        if (two == 9) {
+            one += 1
+            two = one + 1
         }
+        if ((dwarf.sum() - dwarf[one] - dwarf[two]) == 100) {
+            dwarf.removeAll(listOf(dwarf[one], dwarf[two]))
+            break
+        }
+        two++
     }
-    dwarfs.sort()
-    for(i in dwarfs)
-        println(i)
+    dwarf.sorted().forEach {
+        println(it)
+    }
 }
